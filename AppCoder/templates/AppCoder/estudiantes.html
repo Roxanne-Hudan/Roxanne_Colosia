@@ -1,0 +1,52 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+
+{% block title %}Estudiantes{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-center">Agregar Estudiante</h4>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary w-100">Agregar</button>
+                    </form>
+
+                    {% if mensaje %}
+                        <div class="alert alert-success mt-3" role="alert">
+                            {{ mensaje }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-3">Lista de Estudiantes Registrados</h5>
+
+                    {% if estudiantes %}
+                        <ul class="list-group">
+                            {% for estudiante in estudiantes %}
+                                <li class="list-group-item d-flex justify-content-between">
+                                    {{ estudiante.nombre }} {{ estudiante.apellido }}
+                                    <span class="text-muted">{{ estudiante.email }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="alert alert-info text-center">
+                            No hay estudiantes registrados aún.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

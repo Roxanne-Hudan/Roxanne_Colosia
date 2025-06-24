@@ -1,0 +1,54 @@
+{% extends "AppCoder/padre.html" %}
+{% load static %}
+
+{% block title %}Entregables{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-center">Agregar Entregable</h4>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary w-100">Agregar</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-3">Lista de Entregables</h5>
+
+                    {% if entregables %}
+                        <ul class="list-group">
+                            {% for e in entregables %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><strong>Nombre:</strong> {{ e.nombre }}</span>
+                                    <span><strong>Fecha entrega:</strong> {{ e.fecha_entrega }}</span>
+                                    <span>
+                                        {% if e.entregado %}
+                                            <span class="badge bg-success">Entregado</span>
+                                        {% else %}
+                                            <span class="badge bg-warning text-dark">Pendiente</span>
+                                        {% endif %}
+                                    </span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <div class="alert alert-info text-center">
+                            No hay entregables registrados aún.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

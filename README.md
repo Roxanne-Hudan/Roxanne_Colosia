@@ -1,1 +1,3 @@
-# Roxanne_Colosia
+# Python y Django
+
+## Curso 
