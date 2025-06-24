@@ -17,18 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 # from config.urls import probandoTemplate
-from core import views as core_views # Esta parte lo hice antes por la app que se tenia originalmente y no chcoaran las views
 from AppCoder import views as AppCoder_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("AppCoder/", include("AppCoder.urls")), # la Urls de la clase del 03/06
-    path("index/", core_views.index),
-    path("index2/", core_views.index2),
-    path("Saludar/", core_views.saludar),
-    path("saludar2/", core_views.saludar_con_etiqueta),
-    path('saludar3/<str:nombre>/<str:apellido>', core_views.saludar_con_parametros),
-    path("blog/", core_views.blog),
     path("App/", AppCoder_views.App)
     
 
