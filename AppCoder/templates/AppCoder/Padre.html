@@ -18,27 +18,37 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-              <a class="navbar-brand" href="{% url 'inicio' %}">App Coder</a>
-                <div>
-                  <a class="btn btn-outline-primary mx-1" href="{% url 'inicio' %}">Inicio</a>
-                  <a class="btn btn-outline-primary mx-1" href="{% url 'about' %}">About</a>
-                  <a class="btn btn-outline-primary mx-1" href="{% url 'post-list' %}">Pages</a>
-                </div>
-
-                <div>
-                  {% if user.is_authenticated %}
-                    <a class="btn btn-outline-success mx-1" href="{% url 'editar_perfil' %}">Perfil</a>
-                    <a class="btn btn-outline-danger mx-1" href="{% url 'logout' %}">Logout</a>
-                  {% else %}
-                    <a class="btn btn-outline-primary mx-1" href="{% url 'login' %}">Login</a>
-                    <a class="btn btn-outline-primary mx-1" href="{% url 'register' %}">Registro</a>
-                  {% endif %}
-                </div>
+         <nav class="navbar navbar-light bg-light static-top">
+          <div class="container d-flex justify-content-between align-items-center">
+        
+            <!-- Menú desplegable a la izquierda -->
+            <div class="dropdown">
+              <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Navegar
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'inicio' %}">Inicio</a></li>
+                <li><a class="dropdown-item" href="{% url 'about' %}">About</a></li>
+                <li><a class="dropdown-item" href="{% url 'post-list' %}">Pages</a></li>
+              </ul>
             </div>
+        
+            <!-- Nombre del sitio -->
+            <a class="navbar-brand mx-auto" href="{% url 'inicio' %}">App Coder</a>
+        
+            <!-- Login / Logout y Perfil -->
+            <div>
+              {% if user.is_authenticated %}
+                <a class="btn btn-outline-success mx-1" href="{% url 'editar_perfil' %}">Perfil</a>
+                <a class="btn btn-outline-danger mx-1" href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a class="btn btn-outline-primary mx-1" href="{% url 'login' %}">Login</a>
+                <a class="btn btn-outline-primary mx-1" href="{% url 'register' %}">Registro</a>
+              {% endif %}
+            </div>
+        
+          </div>
         </nav>
-
         <main>
             {% block content %}
             <!-- El contenido de la pagina debe ir aqui-->
@@ -88,4 +98,5 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
+    
 </html>
