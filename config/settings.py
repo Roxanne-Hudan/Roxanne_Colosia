@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'AppCoder', # nueva aplicacion 
+    'blog', # App del blog
+    'Cuentas', # App para las cuentas e usuarios
 ]
 
 MIDDLEWARE = [
