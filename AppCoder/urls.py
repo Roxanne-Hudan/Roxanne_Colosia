@@ -1,30 +1,21 @@
-from django.urls import path
-from .views import lista_estudiantes, detalle_estudiante, buscar, busquedaCamada, profesorFormulario, cursos, cursoFormulario2, cursoFormulario, profesores, estudiantes, entregables,inicio, App
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from .import views
+from .views import inicio, login_request, register, editarPerfil, upload_avatar, logout_request, about
 
 
 
 urlpatterns = [
-    # path('estudiantes/', lista_estudiantes, name="lista_estudiantes"),
-    # path('estudiantes/<int:pk>/', detalle_estudiantes, name="detalle_estudiantes"),
-    path("", inicio, name="inicio"),
-    path("App/", App, name= "App"),
-    path("cursos/", cursos, name="cursos"),
-    path("profesores/", profesores, name="profesores"),
-    path("estudiantes/", estudiantes, name="estudiantes"),
-    path("entregables/", entregables, name="entregables"),
-    path("cursoFormulario/", cursoFormulario, name="cursoFormulario"),
-    path("cursoFormulario2/", cursoFormulario2, name="cursoFormulario2"),
-    path("profesorFormulario/", profesorFormulario, name="profesorFormulario"),
-    # path('busquedaCamada', busquedaCamada, name="busquedaCamada"),
-    # path('buscar/', buscar, name='buscar'),
-    path('app/buscar/', buscar, name='buscar'),
-
-    
-    
-    
+    path('', inicio, name='inicio'),
+    path('about/', about, name='about'),
+    path('pages/', include('blog.urls')),  # Aquí está post-list
+    path('accounts/', include('Cuentas.urls')),
+    path('login/', login_request, name='login'),
+    path('register/', register, name='register'),
+    path('editar-perfil/', editarPerfil, name='editar_perfil'),
+    path('upload-avatar/', upload_avatar, name='upload_avatar'),
+    path('logout/', logout_request, name='logout'),
+ 
 
 ]
 

@@ -1,31 +1,36 @@
 from django import forms
-from .models import Estudiante, Entregable, Curso
+from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
+from django.contrib.auth.models import User
+from django import forms
+from AppCoder.models import Avatar
 
-class CursoFormulario(forms.Form):
-    curso = forms.CharField()
-    camada = forms.IntegerField()
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField(required=True)
 
-class ProfesorFormulario(forms.Form):
-    nombre = forms.CharField(max_length=30)
-    apellido = forms.CharField(max_length=30)
-    email = forms.EmailField()
-    profesion = forms.CharField(max_length=30)
-
-class EstudianteForm(forms.ModelForm):
     class Meta:
-        model = Estudiante
-        fields = ['nombre', 'apellido', 'email']
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
 
-class EntregableForm(forms.ModelForm):
+class EditProfileForm(forms.ModelForm):
+    first_name = forms.CharField(required=False)
+    last_name = forms.CharField(required=False)
+    email = forms.EmailField(required=True)
+
     class Meta:
-        model = Entregable
-        fields = ['nombre', 'fecha_entrega', 'entregado']
-        widgets = {
-            'fecha_entrega': forms.DateInput(attrs={'type': 'date'}),
+        model = User
+        fields = ['first_name', 'last_name', 'email']
 
-        }
-
-class CursoForm(forms.ModelForm):
+class AvatarForm(forms.ModelForm):
     class Meta:
-        model = Curso
-        fields = ['nombre', 'camada']
+        model = Avatar
+        fields = ['imagen']
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label="Usuario",
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Tu nombre de usuario'})
+    )
+    password = forms.CharField(
+        label="Contraseña",
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Tu contraseña'})
+    )
