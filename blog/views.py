@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views import View
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 #create
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
@@ -22,13 +25,13 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'AppCoder/Blog/post_list.html'
+    template_name = 'AppCoder/Blog/post_detail.html'
     context_object_name = 'post'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = self.get_object()
-        context['comentarios'] = post.comentarios.all().order_by('-fecha')
+        context['comentarios'] = post.comentarios.all().order_by('-fecha')  # ¡esto es clave!
         context['likes_count'] = post.likes.count()
 
         user = self.request.user
@@ -69,3 +72,33 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user.is_staff
 
 # Create your views here.
+
+
+
+@method_decorator(login_required, name='dispatch')
+class LikePostView(View):
+    def post(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        Like.objects.get_or_create(post=post, usuario=request.user)
+        return redirect('post-detail', pk=pk)
+    
+@method_decorator(login_required, name='dispatch')
+class UnlikePostView(View):
+    def post(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        Like.objects.filter(post=post, usuario=request.user).delete()
+        return redirect('post-detail', pk=pk)
+    
+
+class ComentarioCreateView(CreateView):
+    model = Comentario
+    fields = ['contenido']
+    template_name = 'AppCoder/Blog/comentario_form.html'
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        form.instance.usuario = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('post-detail', kwargs={'pk': self.kwargs['pk']})

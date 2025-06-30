@@ -27,7 +27,7 @@
         <p>No hay páginas aún.</p>
     {% endif %}
 
-    {% if user.is_authenticated and user.is_staff %}
+    {% if user.is_authenticated or user.is_staff %}
         <a href="{% url 'post-crear' %}" class="btn btn-success mt-4">Crear nuevo post</a>
     {% endif %}
 </div>

@@ -24,7 +24,7 @@ class Comentario(models.Model):
         return f"Comentario de {self.usuario.username} en {self.post.titulo}"
     
 class Like(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
+    post = models.ForeignKey(Post, related_name='likes', on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
