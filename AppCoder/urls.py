@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from .views import inicio, login_request, register, editarPerfil, upload_avatar, logout_request, about
-
+from AppCoder import views
 
 
 urlpatterns = [
@@ -15,6 +15,7 @@ urlpatterns = [
     path('editar-perfil/', editarPerfil, name='editar_perfil'),
     path('upload-avatar/', upload_avatar, name='upload_avatar'),
     path('logout/', logout_request, name='logout'),
+     path('test-login/', views.test_template, name='test-login'),
  
 
 ]

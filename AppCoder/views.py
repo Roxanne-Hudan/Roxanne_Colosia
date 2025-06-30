@@ -5,7 +5,12 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, EditProfileForm, AvatarForm, LoginForm
 from .models import Avatar
 
+
 from django.shortcuts import render
+
+
+def test_template(request):
+    return render(request, 'AppCoder/usuario/login.html')
 
 def inicio(request):
     return render(request, 'AppCoder/inicio.html')
