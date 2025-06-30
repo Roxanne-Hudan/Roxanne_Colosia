@@ -10,14 +10,6 @@ class Avatar(models.Model):
     def __str__(self):
         return f"Avatar de {self.user.username}"
 
-class Curso(models.Model):
-    nombre = models.CharField(max_length=40)
-    camada = models.IntegerField()
-
-class Estudiante(models.Model): 
-    nombre = models.CharField(max_length=100) 
-    apellido = models.CharField(max_length=100) 
-    email = models.EmailField() 
 
 class Profesor(models.Model): 
     nombre = models.CharField(max_length=100) 
@@ -25,8 +17,4 @@ class Profesor(models.Model):
     email = models.EmailField() 
     profesion = models.CharField(max_length=100)
 
-class Entregable(models.Model): 
-    nombre = models.CharField(max_length=100) 
-    fecha_entrega = models.DateField() 
-    entregado = models.BooleanField() 
 
