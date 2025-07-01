@@ -8,6 +8,8 @@ urlpatterns = [
     path('', include('AppCoder.urls')),  # Toda la app principal bajo /
     path('accounts/', include('Cuentas.urls')),
     path('pages/', include('blog.urls')),
+    path('accounts/', include('Cuentas.urls')),
+
 ]
 
 if settings.DEBUG:

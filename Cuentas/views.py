@@ -52,3 +52,13 @@ def perfil(request):
         'user': user,
         'profile': profile,
     })
+
+
+@login_required
+def about(request):
+    profile, created = Profile.objects.get_or_create(usuario=request.user)
+    user = request.user
+    return render(request, 'AppCoder/about.html', {
+        'profile': profile,
+        'user': user,
+    })

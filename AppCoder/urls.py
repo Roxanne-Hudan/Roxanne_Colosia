@@ -9,7 +9,6 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', inicio, name='inicio'),
-    path('about/', about, name='about'),
     path('pages/', include('blog.urls')),  # Aquí está post-list
     path('accounts/', include('Cuentas.urls')),
     path('login/', login_request, name='login'),
