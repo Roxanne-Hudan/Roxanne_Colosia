@@ -39,8 +39,10 @@
             <!-- Login / Logout y Perfil -->
             <div>
               {% if user.is_authenticated %}
-                <a class="btn btn-outline-success mx-1" href="{% url 'editar_perfil' %}">Perfil</a>
-                <a class="btn btn-outline-danger mx-1" href="{% url 'logout' %}">Logout</a>
+                <li class="nav-item">
+                  <a class="btn btn-outline-info mx-1" href="{% url 'perfil' %}">Mi Perfil</a>
+                  <a class="btn btn-outline-danger mx-1" href="{% url 'logout' %}">Logout</a>
+                </li>
               {% else %}
                 <a class="btn btn-outline-primary mx-1" href="{% url 'login' %}">Login</a>
                 <a class="btn btn-outline-primary mx-1" href="{% url 'register' %}">Registro</a>

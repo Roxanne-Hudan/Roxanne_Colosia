@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
 from AppCoder.models import Avatar
+from Cuentas.models import Profile
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)

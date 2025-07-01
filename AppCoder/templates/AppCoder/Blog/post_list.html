@@ -27,7 +27,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ post.titulo }}</h5>
                             <p class="card-text">{{ post.subtitulo }}</p>
-                            <p class="text-muted mb-2">Por {{ post.autor.username }}</p>
+                            <p class="text-muted">Por {{ post.autor.username }}</p>
                             <a href="{% url 'post-detail' post.pk %}" class="btn btn-primary">Leer más</a>
                         </div>
                     </div>
