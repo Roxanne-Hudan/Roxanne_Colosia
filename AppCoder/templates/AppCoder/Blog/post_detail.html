@@ -17,9 +17,11 @@
         {{ post.contenido|safe }}
     </div>
 
-    {% if user.is_authenticated and user.is_staff %}
-        <a href="{% url 'post-editar' post.pk %}" class="btn btn-warning mt-3">Editar</a>
-        <a href="{% url 'post-borrar' post.pk %}" class="btn btn-danger mt-3">Borrar</a>
+    {% if user.is_authenticated %}
+        {% if user == post.autor or user.is_staff %}
+            <a href="{% url 'post-editar' post.pk %}" class="btn btn-warning mt-3">Editar</a>
+            <a href="{% url 'post-borrar' post.pk %}" class="btn btn-danger mt-3">Borrar</a>
+        {% endif %}
     {% endif %}
 
     <a href="{% url 'post-list' %}" class="btn btn-secondary mt-3">Volver a la lista</a>

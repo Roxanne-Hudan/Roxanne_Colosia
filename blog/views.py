@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
 #create
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 
@@ -60,7 +60,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('post-list')
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.autor = self.request.user
         return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -70,7 +70,8 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     success_url = reverse_lazy('post-list')
 
     def test_func(self):
-        return self.request.user.is_staff
+        post = self.get_object()
+        return self.request.user == post.autor or self.request.user.is_staff
     
     
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -79,7 +80,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = reverse_lazy('post-list')
 
     def test_func(self):
-        return self.request.user.is_staff
+        post = self.get_object()
+        return self.request.user == post.autor or self.request.user.is_staff
 
 # Create your views here.
 
