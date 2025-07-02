@@ -19,6 +19,7 @@ urlpatterns = [
     path('test-login/', views.test_template, name='test-login'),
     path('perfil/', views.perfil, name='perfil'),
     path('accounts/', include('Cuentas.urls')),
+    path('mensajes/', include('Mensajes.urls')),
 
 ]
 

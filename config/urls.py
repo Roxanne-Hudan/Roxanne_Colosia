@@ -9,6 +9,7 @@ urlpatterns = [
     path('accounts/', include('Cuentas.urls')),
     path('pages/', include('blog.urls')),
     path('accounts/', include('Cuentas.urls')),
+    path('mensajes/', include('Mensajes.urls')),
 
 ]
 

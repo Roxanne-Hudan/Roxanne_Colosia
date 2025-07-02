@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'blog', # App del blog
     'Cuentas', # App para las cuentas e usuarios
     'ckeditor', # Soporte
+    'Mensajes', # Envio y recepcion de mensajes
 ]
 
 MIDDLEWARE = [
