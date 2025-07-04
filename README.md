@@ -83,3 +83,11 @@ python manage.py startapp nombre_app
 - No subir la base de datos (`db.sqlite3`) ni la carpeta `media/` al repositorio.  
 - Usar el archivo `.gitignore` para excluirlos.  
 - Formularios que manejan imágenes deben usar `enctype="multipart/form-data"`.  
+
+
+links de video
+https://youtu.be/77RLoiE0NoE
+
+link del archivo
+https://docs.google.com/document/d/18X7XcXZ_Y0bhrDEYOXP1MxhoWzP7uOTVAmCg9kZ651M/edit?usp=sharing
+https://github.com/Roxanne-Hudan/Roxanne_Colosia.git
